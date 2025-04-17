@@ -1,12 +1,12 @@
 <?php
 class Usuario{
-    protected string $name;
+    protected string $nome;
     protected string $idade;
     protected string $senha;
     protected string $cidade;
 
-    public function __construct(string $name, string $idade, string $senha, string $cidade){
-        $this->name = $name;
+    public function __construct(string $nome, string $idade, string $senha, string $cidade){
+        $this->nome = $nome;
         $this->idade = $idade;
         $this->senha = $senha;
         $this->cidade = $cidade;

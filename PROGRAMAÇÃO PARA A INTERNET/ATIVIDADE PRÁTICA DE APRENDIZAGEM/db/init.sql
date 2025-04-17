@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS loja_autopecas CHARACTER SET utf8 COLLATE utf8_gen
 
 USE loja_autopecas;
 
-CREATE TABLE IF NOT EXISTS usuarios (
+CREATE TABLE IF NOT EXISTS vendedores (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100),
     idade INT,

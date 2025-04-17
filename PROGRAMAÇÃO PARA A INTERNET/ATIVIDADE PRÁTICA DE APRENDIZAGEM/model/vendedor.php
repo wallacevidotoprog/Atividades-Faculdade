@@ -1,4 +1,8 @@
 <?php
+require_once __DIR__ . '/../db/db.php';
+require_once __DIR__ . '/user.php';
+
+
 class Vendedor extends Usuario{
     protected string $telefone;
     protected string $email;
@@ -9,7 +13,7 @@ class Vendedor extends Usuario{
         $this->email = $email;
     }
     public function exibirPropriedades(): void {
-        echo "Nome: " . $this->name;
+        echo "Nome: " . $this->nome;
         echo "Idade: " . $this->idade;
         echo "Cidade: " . $this->cidade;
         echo "Telefone: " . $this->telefone;
@@ -18,9 +22,9 @@ class Vendedor extends Usuario{
     public function salvar()
     {
         $conn = Conexao::conectar();
-        $sql = "INSERT INTO vendedor (name, idade, senha, cidade, telefone, email) VALUES (:name, :idade, :senha, :cidade, :telefone, :email)";
+        $sql = "INSERT INTO vendedores (nome, idade, senha, cidade, telefone, email) VALUES (:nome, :idade, :senha, :cidade, :telefone, :email)";
         $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':name', $this->name);
+        $stmt->bindParam(':nome', $this->nome);
         $stmt->bindParam(':idade', $this->idade);
         $stmt->bindParam(':senha', $this->senha);
         $stmt->bindParam(':cidade', $this->cidade);
@@ -28,6 +32,11 @@ class Vendedor extends Usuario{
         $stmt->bindValue(':email', $this->email);
         $stmt->execute();
 
+    }
+    public static function listarTodos() {
+        $conn = Conexao::conectar();
+        $stmt = $conn->query("SELECT * FROM vendedores ORDER BY id DESC");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 ?>
